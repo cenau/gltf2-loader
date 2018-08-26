@@ -13,6 +13,7 @@
     "three": "*",
     "three-effectcomposer": "*",
     "three-gltf-loader": "^1.95.0",
+    "glslify": "*",
     "tiny-ecs": "*"
   },
   "devDependencies": {
@@ -22,8 +23,7 @@
     "budo": "^11.3.2",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "*",
-    "glslify": "*"
+    "eslint-plugin-import": "*"
   },
   "browserify": {
     "transform": [
@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "budo src/main.js:dist/main.js --host=localhost --live",
     "build": "browserify src/main.js -o dist/main.js",
-    "lint": "eslint src/*.js; exit 0",
+    "lint": "eslint src/*.js",
     "lint:fix": "eslint src/*.js --fix"
   },
   "author": "",

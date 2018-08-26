@@ -1,11 +1,10 @@
 import * as THREE from 'three';
 import createLoop from 'canvas-loop';
 import kd from 'keydrown';
-import ecs from 'tiny-ecs';
+// import ecs from 'tiny-ecs';
 import ec from 'three-effectcomposer';
 import GLTFLoader from 'three-gltf-loader';
 import OrbitControls from 'orbit-controls-es6';
- 
 
 
 // systems
@@ -22,33 +21,30 @@ const glslify = require('glslify');
 // assets
 
 
-
-var path = 'textures/Bridge2/';
-				var format = '.jpg';
-				var envMap = new THREE.CubeTextureLoader().load( [
-					path + 'posx' + format, path + 'negx' + format,
-					path + 'posy' + format, path + 'negy' + format,
-					path + 'posz' + format, path + 'negz' + format
-				] );
+const path = 'textures/Bridge2/';
+const format = '.jpg';
+const envMap = new THREE.CubeTextureLoader().load([
+  `${path}posx${format}`, `${path}negx${format}`,
+  `${path}posy${format}`, `${path}negy${format}`,
+  `${path}posz${format}`, `${path}negz${format}`,
+]);
 
 const scene = setupScene();
 scene.background = envMap;
 const loader = new GLTFLoader();
 
 
-
-loader.load( 'models/DamagedHelmet/DamagedHelmet.gltf', function ( gltf ) {
-					gltf.scene.traverse( function ( child ) {
-						if ( child.isMesh ) {
-							child.material.envMap = envMap;
-            }
-					} );
-					scene.add( gltf.scene );
-				} );
+loader.load('models/DamagedHelmet/DamagedHelmet.gltf', (gltf) => {
+  gltf.scene.traverse((child) => {
+    if (child.isMesh) {
+      child.material.envMap = envMap;
+    }
+  });
+  scene.add(gltf.scene);
+});
 
 
 // physics
-
 
 
 //  canvas for rendering
@@ -64,12 +60,10 @@ const composer = setupComposer();
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enabled = true;
 controls.maxDistance = 1500;
-controls.minDistance = 0; 
+controls.minDistance = 0;
 
 // setup ecs
-const ents = new ecs.EntityManager(); // ents, because, i keep misspelling entities
-
-
+// const ents = new ecs.EntityManager(); // ents, because, i keep misspelling entities
 
 
 const app = createLoop(canvas, { scale: renderer.devicePixelRatio });
@@ -85,9 +79,7 @@ app.on('tick', (dt) => {
   composer.passthroughEffect.uniforms.iGlobalTime.value = time;
 
 
-
   // run systems
-
 });
 
 
@@ -98,7 +90,6 @@ resize();
 
 
 // keyboard input
-
 
 
 function setupRenderer() {
@@ -120,7 +111,8 @@ function setupCamera() {
     75,
     window.innerWidth / window.innerHeight,
     0.1,
-    500);
+    500,
+  );
 
   cam.position.set(0, 0, 3);
   return cam;
@@ -131,9 +123,9 @@ function setupScene() {
   const sce = new THREE.Scene();
   const light = new THREE.AmbientLight(0x404040); // soft white light
   sce.add(light);
-  const light2 = new THREE.HemisphereLight( 0xbbbbff, 0x444422 );
-	light.position.set( 0, 1, 0 );
-	sce.add( light2 );
+  const light2 = new THREE.HemisphereLight(0xbbbbff, 0x444422);
+  light.position.set(0, 1, 0);
+  sce.add(light2);
   return sce;
 }
 
