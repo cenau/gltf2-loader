@@ -1,7 +1,7 @@
 {
-  "name": "gameskel",
-  "version": "0.0.1",
-  "description": "3D game skeleton",
+  "name": "gltf2-loader",
+  "version": "0.0.0",
+  "description": "gltf2 model loader and viewer",
   "main": "",
   "dependencies": {
     "cannon": "^0.6.2",
@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "budo src/main.js:dist/main.js --host=localhost --live",
     "build": "browserify src/main.js -o dist/main.js",
-    "lint": "eslint src/*.js",
+    "lint": "eslint src/*.js; exit 0",
     "lint:fix": "eslint src/*.js --fix"
   },
   "author": "",
