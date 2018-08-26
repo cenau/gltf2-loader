@@ -9,8 +9,10 @@
     "glsl-fog": "*",
     "glsl-noise": "*",
     "keydrown": "*",
+    "orbit-controls-es6": "^1.0.12",
     "three": "*",
     "three-effectcomposer": "*",
+    "three-gltf-loader": "^1.95.0",
     "tiny-ecs": "*"
   },
   "devDependencies": {
